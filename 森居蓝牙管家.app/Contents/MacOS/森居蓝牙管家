@@ -1,0 +1,6 @@
+#!/bin/zsh
+APP_DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
+NODE="$APP_DIR/.runtime/node-v20.12.2-darwin-x64/bin/node"
+export PATH="$APP_DIR/.runtime/node-v20.12.2-darwin-x64/bin:$PATH"
+cd "$APP_DIR"
+exec arch -x86_64 "$NODE" "$APP_DIR/node_modules/electron/cli.js" "$APP_DIR"

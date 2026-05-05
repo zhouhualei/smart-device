@@ -1,0 +1,13 @@
+{
+  "name": "smart-home-bluetooth-manager",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mac client prototype for managing smart home devices over Bluetooth.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^30.0.0"
+  }
+}

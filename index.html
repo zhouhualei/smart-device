@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>森居蓝牙管家</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="traffic" aria-hidden="true">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="connection-pill">
+          <span class="pulse"></span>
+          <span>蓝牙已开启</span>
+        </div>
+        <nav class="toolbar" aria-label="全局操作">
+          <button class="icon-button" type="button" aria-label="扫描附近设备" title="扫描附近设备" id="scanButton">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10-5 5V2l5 5L7 17"/></svg>
+          </button>
+          <button class="icon-button" type="button" aria-label="添加设备" title="添加设备" id="addButton">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <button class="icon-button" type="button" aria-label="设置" title="设置">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.04.04a2.1 2.1 0 0 1-2.97 2.97l-.04-.04a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.66V21a2.1 2.1 0 0 1-4.2 0v-.06a1.8 1.8 0 0 0-1.1-1.66 1.8 1.8 0 0 0-1.98.36l-.04.04a2.1 2.1 0 1 1-2.97-2.97l.04-.04A1.8 1.8 0 0 0 3.82 15a1.8 1.8 0 0 0-1.66-1.1H2.1a2.1 2.1 0 0 1 0-4.2h.06a1.8 1.8 0 0 0 1.66-1.1 1.8 1.8 0 0 0-.36-1.98l-.04-.04A2.1 2.1 0 1 1 6.39 3.6l.04.04a1.8 1.8 0 0 0 1.98.36A1.8 1.8 0 0 0 9.5 2.34V2.1a2.1 2.1 0 0 1 4.2 0v.06a1.8 1.8 0 0 0 1.1 1.66 1.8 1.8 0 0 0 1.98-.36l.04-.04a2.1 2.1 0 0 1 2.97 2.97l-.04.04a1.8 1.8 0 0 0-.36 1.98 1.8 1.8 0 0 0 1.66 1.1h.25a2.1 2.1 0 0 1 0 4.2h-.06A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+          </button>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Home Bluetooth Hub</p>
+          <h1>森居蓝牙管家</h1>
+          <p class="summary">通过 Mac 管理家里的智能家具、传感器、网关和红外设备。</p>
+        </div>
+        <div class="status-panel">
+          <span class="sun"></span>
+          <strong>26°</strong>
+          <span>室内舒适</span>
+        </div>
+      </section>
+
+      <section class="tabs" aria-label="房间筛选">
+        <button class="tab active" type="button" data-room="all">全屋</button>
+        <button class="tab" type="button" data-room="kitchen">厨房</button>
+        <button class="tab" type="button" data-room="bedroom">卧室</button>
+        <button class="tab" type="button" data-room="entry">门口</button>
+        <button class="tab" type="button" data-room="study">书房</button>
+        <button class="tab" type="button" data-room="unassigned">未分配</button>
+      </section>
+
+      <section class="workspace">
+        <section class="device-grid" id="deviceGrid" aria-label="设备列表"></section>
+
+        <aside class="side-panel">
+          <section class="scan-card">
+            <div class="scan-head">
+              <div>
+                <p class="eyebrow">Bluetooth Scan</p>
+                <h2>附近设备</h2>
+              </div>
+              <button class="text-button" type="button" id="scanSmallButton">重新扫描</button>
+            </div>
+            <div class="scan-orbit" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <b></b>
+            </div>
+            <ul class="nearby-list" id="nearbyList"></ul>
+          </section>
+
+          <section class="detail-card" id="detailCard"></section>
+        </aside>
+      </section>
+
+      <nav class="dock" aria-label="主导航">
+        <button class="dock-item active" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z"/></svg><span>米家</span></button>
+        <button class="dock-item" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/><path d="M12 12 4.5 7.5M12 12l7.5-4.5M12 12v8"/></svg><span>智能</span></button>
+        <button class="dock-item" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span>产品</span></button>
+        <button class="dock-item" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12v12H6z"/><path d="M9 8V5h6v3"/></svg><span>商城</span></button>
+        <button class="dock-item" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>我的</span></button>
+      </nav>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
